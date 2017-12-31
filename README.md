@@ -26,7 +26,6 @@ The following rules have been / will be created.
 
 ### Misc
 
-- [ ] Do not use On Error Goto.
 - [ ] Use the IsNot keyword instead of Not...Is Nothing.
 - [ ] Do not include braces in property declaration.
 - [ ] New Keyword: Use short instantiation.
