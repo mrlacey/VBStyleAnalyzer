@@ -15,7 +15,7 @@ The following rules have been / will be created.
 ### Layout
 
 - [ ] Use only one statement per line. Don't use the Visual Basic line separator character (:).
-- [ ] Add at least one blank line between method and property definitions.
+- [ ] Add **exactly** one blank line between method and property definitions.
 
 ### Commenting
 
