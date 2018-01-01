@@ -1,4 +1,12 @@
-﻿<ExportCodeFixProvider(LanguageNames.VisualBasic, Name:=NameOf(CommentStartsWithSpaceFixProvider)), [Shared]>
+﻿Imports System.Collections.Immutable
+Imports System.Composition
+Imports System.Threading
+Imports Microsoft.CodeAnalysis
+Imports Microsoft.CodeAnalysis.CodeFixes
+Imports Microsoft.CodeAnalysis.CodeActions
+Imports Microsoft.CodeAnalysis.VisualBasic
+
+<ExportCodeFixProvider(LanguageNames.VisualBasic, Name:=NameOf(CommentStartsWithSpaceFixProvider)), [Shared]>
 Public Class CommentStartsWithSpaceFixProvider
     Inherits CodeFixProvider
 

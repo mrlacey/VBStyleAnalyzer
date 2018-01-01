@@ -1,3 +1,8 @@
+﻿Imports System.Collections.Immutable
+Imports Microsoft.CodeAnalysis
+Imports Microsoft.CodeAnalysis.Diagnostics
+Imports Microsoft.CodeAnalysis.VisualBasic
+
 <DiagnosticAnalyzer(LanguageNames.VisualBasic)>
 Public Class CommentStartsWithSpaceAnalyzer
     Inherits DiagnosticAnalyzer
@@ -6,7 +11,7 @@ Public Class CommentStartsWithSpaceAnalyzer
 
     ' See https://github.com/dotnet/roslyn/blob/master/docs/analyzers/Localizing%20Analyzers.md for more on localization
     Public Shared ReadOnly Title As String = "Comment must start with a space"
-    Public Shared ReadOnly MessageFormat As String = "the comment does not start with a space."
+    Public Shared ReadOnly MessageFormat As String = "The comment does not start with a space."
     Public Shared ReadOnly Description As String = "Insert one space between the comment delimiter (') and the comment text."
 
     Private Shared Rule As New DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Categories.Commenting, defaultSeverity:=DiagnosticSeverity.Warning, isEnabledByDefault:=True, description:=Description)
