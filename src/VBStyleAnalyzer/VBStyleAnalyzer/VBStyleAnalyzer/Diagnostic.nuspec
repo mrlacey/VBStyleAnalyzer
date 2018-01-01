@@ -1,0 +1,26 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>VBStyleAnalyzer</id>
+    <version>0.1.1.0</version>
+    <title>VBStyleAnalyzer</title>
+    <authors>Matt Lacey</authors>
+    <owners>Matt Lacey</owners>
+    <licenseUrl>https://github.com/mrlacey/VBStyleAnalyzer/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/mrlacey/VBStyleAnalyzer</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>VBStyleAnalyzer</description>
+    <releaseNotes>First release - Comments should start with a space</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>VBStyleAnalyzer, WTS</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework="" />
+    </frameworkAssemblies>
+    <developmentDependency>true</developmentDependency>
+  </metadata>
+  <!-- The convention for analyzers is to put language agnostic dlls in analyzers\portable50 and language specific analyzers in either analyzers\portable50\cs or analyzers\portable50\vb -->
+  <files>
+    <file src="*.dll" target="analyzers\dotnet\vb" exclude="**\Microsoft.CodeAnalysis.*;**\System.Collections.Immutable.*;**\System.Reflection.Metadata.*;**\System.Composition.*" />
+    <file src="tools\*.ps1" target="tools\" />
+  </files>
+</package>
