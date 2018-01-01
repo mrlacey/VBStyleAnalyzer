@@ -15,19 +15,21 @@ The following rules have been / will be created.
 ### Layout
 
 - [ ] Use only one statement per line. Don't use the Visual Basic line separator character (:).
-- [ ] Add **exactly** one blank line between method and property definitions.
+- [ ] **(P)** Add **exactly** one blank line between method and property definitions.
 
 ### Commenting
 
 - [ ] Put comments on a separate line instead of at the end of a line of code.
-- [ ] Start comment text with an uppercase letter, and end comment text with a period.
+- [ ] **(P)**Start comment text with an uppercase letter, and end comment text with a period.
 - [x] **VBSAC003** Insert one space between the comment delimiter (') and the comment text.
 - [ ] Do not surround comments with formatted blocks of asterisks.
 
 ### Misc
 
 - [ ] Use the IsNot keyword instead of Not...Is Nothing.
-- [ ] Do not include braces in property declaration.
+- [ ] **(P)** Do not include braces in property declaration.
 - [ ] New Keyword: Use short instantiation.
 - [ ] Use Handles rather than AddHandler.
 - [ ] Use meaningful names for LINQ query variables.
+
+**(P)** = To be implemented as a priority
