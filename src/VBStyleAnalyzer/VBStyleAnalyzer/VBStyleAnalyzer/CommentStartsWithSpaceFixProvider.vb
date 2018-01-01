@@ -17,17 +17,12 @@ Public Class CommentStartsWithSpaceFixProvider
     End Property
 
     Public NotOverridable Overrides Function GetFixAllProvider() As FixAllProvider
-        ' See https://github.com/dotnet/roslyn/blob/master/docs/analyzers/FixAllProvider.md for more information on Fix All Providers
         Return WellKnownFixAllProviders.BatchFixer
     End Function
 
     Public NotOverridable Overrides Function RegisterCodeFixesAsync(context As CodeFixContext) As Task
-
-        ' TODO: Replace the following code with your own analysis, generating a CodeAction for each fix to suggest
-
         Dim dia = context.Diagnostics.First()
 
-        ' Register a code action that will invoke the fix.
         context.RegisterCodeFix(
             CodeAction.Create(
                 title:=CommentStartsWithSpaceAnalyzer.Title,
