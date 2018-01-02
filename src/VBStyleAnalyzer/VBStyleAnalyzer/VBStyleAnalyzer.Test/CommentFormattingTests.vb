@@ -15,7 +15,7 @@ Namespace VBStyleAnalyzer.Test
             Dim test = ""
             VerifyBasicDiagnostic(test)
         End Sub
-        
+
         <TestMethod>
         Public Sub EmptyCommentTriggersNothing()
 
@@ -28,7 +28,7 @@ End Module"
 
             VerifyBasicDiagnostic(test)
         End Sub
-        
+
         <TestMethod>
         Public Sub MultiSpaceCommentTriggersNothing()
 
@@ -88,7 +88,7 @@ End Module"
 
             VerifyBasicDiagnostic(test)
         End Sub
-        
+
         ' ToDo: Handle multi-line comments
         ''<TestMethod>
         Public Sub ValidMultiLineCommentTriggersNothing()
