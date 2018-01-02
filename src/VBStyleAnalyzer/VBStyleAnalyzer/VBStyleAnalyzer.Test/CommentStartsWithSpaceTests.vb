@@ -17,6 +17,45 @@ Namespace VBStyleAnalyzer.Test
         End Sub
 
         <TestMethod>
+        Public Sub EmptyCommentTriggersNothing()
+
+            Dim test = "
+Module Module1
+    '
+    Sub Main()
+    End Sub
+End Module"
+
+            VerifyBasicDiagnostic(test)
+        End Sub
+
+        <TestMethod>
+        Public Sub SingleSpaceCommentTriggersNothing()
+
+            Dim test = "
+Module Module1
+    ' 
+    Sub Main()
+    End Sub
+End Module"
+
+            VerifyBasicDiagnostic(test)
+        End Sub
+
+        <TestMethod>
+        Public Sub MultiSpaceCommentTriggersNothing()
+
+            Dim test = "
+Module Module1
+    '    
+    Sub Main()
+    End Sub
+End Module"
+
+            VerifyBasicDiagnostic(test)
+        End Sub
+
+        <TestMethod>
         Public Sub ValidCommentTriggersNothing()
 
             Dim test = "

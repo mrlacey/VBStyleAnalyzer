@@ -9,7 +9,7 @@ Public Class CommentStartsWithSpaceAnalyzer
 
     Public Const DiagnosticId = "VBSAC003"
 
-    Public Shared ReadOnly Title As String = "Comment must start with a space"
+    Public Shared ReadOnly Title As String = "Comments must start with a space"
     Public Shared ReadOnly MessageFormat As String = "The comment does not start with a space."
     Public Shared ReadOnly Description As String = "Insert one space between the comment delimiter (') and the comment text."
 
@@ -22,6 +22,7 @@ Public Class CommentStartsWithSpaceAnalyzer
     End Property
 
     Public Overrides Sub Initialize(context As AnalysisContext)
+        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None)
         context.RegisterSyntaxTreeAction(AddressOf AnalyzeSyntaxTree)
     End Sub
 
@@ -32,9 +33,11 @@ Public Class CommentStartsWithSpaceAnalyzer
         For Each node In commentNodes
             Dim commentText = node.ToString()
 
-            If Not commentText.StartsWith("' ") And commentText.Substring(2, 1) IsNot " " Then
-                Dim diag = Diagnostic.Create(Rule, node.GetLocation())
-                context.ReportDiagnostic(diag)
+            If commentText.Length > 2 Then
+                If Not commentText.StartsWith("' ") And commentText.Substring(2, 1) IsNot " " Then
+                    Dim diag = Diagnostic.Create(Rule, node.GetLocation())
+                    context.ReportDiagnostic(diag)
+                End If
             End If
         Next
     End Sub
