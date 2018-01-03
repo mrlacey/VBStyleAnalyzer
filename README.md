@@ -26,10 +26,10 @@ The following rules have been / will be created.
 
 ### Misc
 
-- [ ] Use the IsNot keyword instead of Not...Is Nothing.
-- [x] **VBSAM002** Do not include braces in property declaration.
-- [ ] New Keyword: Use short instantiation.
-- [ ] Use Handles rather than AddHandler.
 - [ ] Use meaningful names for LINQ query variables.
+- [x] **VBSAM002** Do not include braces in property declaration.
+- [ ] (?) Use the IsNot keyword instead of Not...Is Nothing.
+- [ ] (?) New Keyword: Use short instantiation.
+- [ ] (?) Use Handles rather than AddHandler.
 
-Other analyzers will be added ASAP.
+(?) = Possible additions
