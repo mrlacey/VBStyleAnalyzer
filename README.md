@@ -10,7 +10,7 @@ The following rules have been / will be created.
 
 ### Naming
 
-- [ ] Do not use "My" or "my" as part of a variable name.
+- [x] **VBSAN001** Do not use "my" at the start of a name.
 
 ### Layout
 

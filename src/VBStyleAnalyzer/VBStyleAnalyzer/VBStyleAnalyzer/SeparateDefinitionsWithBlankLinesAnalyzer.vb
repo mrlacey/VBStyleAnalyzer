@@ -84,13 +84,21 @@ Public Class SeparateDefinitionsWithBlankLinesAnalyzer
             Return
         End If
 
-        Dim previousLine = importStatements(0).SyntaxTree.ToString().Substring(importStatements(0).Span.Start, importStatements(0).Span.Length)
-        Dim previousTopNamespace = previousLine.Substring(0, previousLine.IndexOf("."c))
+        Dim orZeroIfNegative = Function(value As Integer) As Integer
+                                   If value < 0 Then
+                                       Return 0
+                                   Else
+                                       Return value
+                                   End If
+                               End Function
+
+        Dim previousLine = importStatements(0).SyntaxTree.ToString().Substring(importStatements(0).Span.Start, orZeroIfNegative(importStatements(0).Span.Length))
+        Dim previousTopNamespace = previousLine.Substring(0, orZeroIfNegative(previousLine.IndexOf("."c)))
         Dim previousLineSpan = importStatements(0).SyntaxTree.GetLineSpan(importStatements(0).Span)
 
         For i = 1 To importStatements.Count - 1
-            Dim currentLine = importStatements(i).SyntaxTree.ToString().Substring(importStatements(i).Span.Start, importStatements(i).Span.Length)
-            Dim currentTopNamespace = currentLine.Substring(0, currentLine.IndexOf("."c))
+            Dim currentLine = importStatements(i).SyntaxTree.ToString().Substring(importStatements(i).Span.Start, orZeroIfNegative(importStatements(i).Span.Length))
+            Dim currentTopNamespace = currentLine.Substring(0, orZeroIfNegative(currentLine.IndexOf("."c)))
             Dim currentLineSpan = importStatements(i).SyntaxTree.GetLineSpan(importStatements(i).Span)
 
             Dim lineDistance = currentLineSpan.StartLinePosition.Line - previousLineSpan.EndLinePosition.Line
@@ -112,7 +120,7 @@ Public Class SeparateDefinitionsWithBlankLinesAnalyzer
         Next
     End Sub
 
-    Private Shared Sub HandleMemberList(context As SyntaxNodeAnalysisContext, ByVal members As SyntaxList(Of StatementSyntax))
+    Private Shared Sub HandleMemberList(context As SyntaxNodeAnalysisContext, members As SyntaxList(Of StatementSyntax))
         For i = 1 To members.Count - 1
             If Not members(i - 1).ContainsDiagnostics AndAlso Not members(i).ContainsDiagnostics Then
                 If Not members(i).IsKind(SyntaxKind.FieldDeclaration) OrElse Not members(i - 1).IsKind(members(i).Kind()) OrElse IsMultiline(CType(members(i - 1), FieldDeclarationSyntax)) Then
