@@ -14,7 +14,7 @@ Public Class PropertyDeclarationBracesAnalyzer
     Public Shared ReadOnly MessageFormat As String = "The property declaration includes braces but it should not."
     Public Shared ReadOnly Description As String = "Do not include braces in property  the declaration."
 
-    Private Shared Rule As New DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Categories.Commenting, defaultSeverity:=DiagnosticSeverity.Warning, isEnabledByDefault:=True, description:=Description)
+    Private Shared Rule As New DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Categories.Misc, defaultSeverity:=DiagnosticSeverity.Warning, isEnabledByDefault:=True, description:=Description)
 
     Public Overrides ReadOnly Property SupportedDiagnostics As ImmutableArray(Of DiagnosticDescriptor)
         Get

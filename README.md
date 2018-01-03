@@ -15,7 +15,7 @@ The following rules have been / will be created.
 ### Layout
 
 - [ ] Use only one statement per line. Don't use the Visual Basic line separator character (:).
-- [ ] **(P)** Add **exactly** one blank line between method and property definitions.
+- [x] **VBSAL002** Add **exactly** one blank line between method and property definitions.
 
 ### Commenting
 
@@ -32,4 +32,4 @@ The following rules have been / will be created.
 - [ ] Use Handles rather than AddHandler.
 - [ ] Use meaningful names for LINQ query variables.
 
-**(P)** = To be implemented as a priority
+Other analyzers will be added ASAP.
