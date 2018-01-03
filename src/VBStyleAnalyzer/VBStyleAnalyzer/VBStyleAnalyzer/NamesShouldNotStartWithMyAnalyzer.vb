@@ -6,7 +6,7 @@ Imports Microsoft.CodeAnalysis.VisualBasic.Syntax
 
 <DiagnosticAnalyzer(LanguageNames.VisualBasic)>
 <NoCodeFix("Creating a fix for this is low priority")>
-Public Class VariablesShouldNotStartWithMyAnalyzer
+Public Class NamesShouldNotStartWithMyAnalyzer
     Inherits DiagnosticAnalyzer
 
     Public Const DiagnosticId = "VBSAN001"

@@ -13,9 +13,11 @@ Namespace VBStyleAnalyzer.Test
         <TestMethod>
         Public Sub CorrectSpacingTriggersNoDiagnostics()
             Dim test = "
+Imports Some
 Imports Some.Namespace
 Imports Some.Other.Namespace
 
+Imports Totally
 Imports Totally.Different.Namespace
 
 Interface IAsset
@@ -127,7 +129,7 @@ Class Class5
 End Class
 "
 
-            VerifyBasicDiagnostic(test, ExpectedDiagnostic(5, 1))
+            VerifyBasicDiagnostic(test)
         End Sub
 
         Private Function ExpectedDiagnostic(line As Integer, column As Integer) As DiagnosticResult

@@ -8,7 +8,7 @@
   
   <PropertyGroup>
     <PackageId>VBStyleAnalyzer</PackageId>
-    <PackageVersion>0.1.8</PackageVersion>
+    <PackageVersion>0.1.9</PackageVersion>
     <Authors>Matt Lacey</Authors>
     <PackageLicenseUrl>https://github.com/mrlacey/VBStyleAnalyzer/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/mrlacey/VBStyleAnalyzer</PackageProjectUrl>
@@ -16,13 +16,13 @@
     <RepositoryUrl>https://github.com/mrlacey/VBStyleAnalyzer</RepositoryUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>Roslyn analyzers for VB UWP apps</Description>
-    <PackageReleaseNotes>Added VBSAN001 for detecting names strarting 'my' + bug fixes</PackageReleaseNotes>
+    <PackageReleaseNotes>Bug fixes</PackageReleaseNotes>
     <Copyright>Copyright 2018</Copyright>
     <PackageTags>VBStyleAnalyzer, VisualBasic, VB.Net, WTS, Windows Template Studio</PackageTags>
     <NoPackageAnalysis>true</NoPackageAnalysis>
-    <Version>0.1.8</Version>
+    <Version>0.1.9</Version>
     <Company>Matt Lacey</Company>
-    <FileVersion>0.1.8.0</FileVersion>
+    <FileVersion>0.1.9.0</FileVersion>
   </PropertyGroup>
    
   <ItemGroup>

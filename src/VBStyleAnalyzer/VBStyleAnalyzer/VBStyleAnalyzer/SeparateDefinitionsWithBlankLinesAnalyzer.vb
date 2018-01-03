@@ -84,21 +84,13 @@ Public Class SeparateDefinitionsWithBlankLinesAnalyzer
             Return
         End If
 
-        Dim orZeroIfNegative = Function(value As Integer) As Integer
-                                   If value < 0 Then
-                                       Return 0
-                                   Else
-                                       Return value
-                                   End If
-                               End Function
-
-        Dim previousLine = importStatements(0).SyntaxTree.ToString().Substring(importStatements(0).Span.Start, orZeroIfNegative(importStatements(0).Span.Length))
-        Dim previousTopNamespace = previousLine.Substring(0, orZeroIfNegative(previousLine.IndexOf("."c)))
+        Dim previousLine = importStatements(0).SyntaxTree.ToString().Substring(importStatements(0).Span.Start, importStatements(0).Span.Length)
+        Dim previousTopNamespace = If(previousLine.Contains("."c), previousLine.Substring(0, previousLine.IndexOf("."c)), previousLine)
         Dim previousLineSpan = importStatements(0).SyntaxTree.GetLineSpan(importStatements(0).Span)
 
         For i = 1 To importStatements.Count - 1
-            Dim currentLine = importStatements(i).SyntaxTree.ToString().Substring(importStatements(i).Span.Start, orZeroIfNegative(importStatements(i).Span.Length))
-            Dim currentTopNamespace = currentLine.Substring(0, orZeroIfNegative(currentLine.IndexOf("."c)))
+            Dim currentLine = importStatements(i).SyntaxTree.ToString().Substring(importStatements(i).Span.Start, importStatements(i).Span.Length)
+            Dim currentTopNamespace = If(currentLine.Contains("."c), currentLine.Substring(0, currentLine.IndexOf("."c)), currentLine)
             Dim currentLineSpan = importStatements(i).SyntaxTree.GetLineSpan(importStatements(i).Span)
 
             Dim lineDistance = currentLineSpan.StartLinePosition.Line - previousLineSpan.EndLinePosition.Line
