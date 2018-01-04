@@ -19,7 +19,7 @@ The following rules have been / will be created.
 
 ### Commenting
 
-- [ ] Put comments on a separate line instead of at the end of a line of code.
+- [x] **VBSAC001** Put comments on a separate line instead of at the end of a line of code.
 - [x] **VBSAC002** Start comment text with an uppercase letter, and end comment text with a period.
 - [x] **VBSAC003** Insert one space between the comment delimiter (') and the comment text.
 - [x] **VBSAC004** Do not surround comments with formatted blocks of asterisks.
