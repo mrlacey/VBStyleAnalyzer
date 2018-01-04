@@ -8,39 +8,38 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Namespace VBStyleAnalyzer.Test
     <TestClass>
-    Public Class LinqVariableNameTests
+    Public Class CommentsOnOwnLineTests
         Inherits CodeFixVerifier
 
         <TestMethod>
-        Public Sub ShortNamedVariablesAreIdentified()
+        Public Sub PropertiesVariablesAndClassesNamedIncorrectlyAreIdentified()
             Dim test = "
-Dim commentNodes = From node In root.DescendantTrivia() Where node.IsKind(SyntaxKind.CommentTrivia) Select node
-Dim commentNodes = From n In root.DescendantTrivia() Where n.IsKind(SyntaxKind.CommentTrivia) Select n
+' Comments here are fine
+Dim whitespaceTrivia = allTrivia..ToList() ' This is wrong
 
-Dim whitespaceTrivia = allTrivia.Where(Function(trivia) Not trivia.IsKind(SyntaxKind.WhitespaceTrivia))
-Dim whitespaceTrivia = allTrivia.Where(Function(x) Not x.IsKind(SyntaxKind.WhitespaceTrivia))
+Dim something =2
+' This is ok too
 "
 
             Dim expected As DiagnosticResult() = {
-                                                     ExpectedDiagnostic(3, 60),
-                                                     ExpectedDiagnostic(6, 49)
+                                                   ExpectedDiagnostic(3, 44)
             }
 
             VerifyBasicDiagnostic(test, expected)
         End Sub
 
         Private Function ExpectedDiagnostic(line As Integer, column As Integer) As DiagnosticResult
-            Return New DiagnosticResult With {.Id = LinqVariableNameAnalyzer.DiagnosticId,
-                .Message = LinqVariableNameAnalyzer.MessageFormat,
+            Return New DiagnosticResult With {.Id = CommentsOnOwnLineAnalyzer.DiagnosticId,
+                .Message = CommentsOnOwnLineAnalyzer.MessageFormat,
                 .Severity = DiagnosticSeverity.Warning,
                 .Locations = New DiagnosticResultLocation() {
-                                                                New DiagnosticResultLocation("Test0.vb", line, column)
+                                                              New DiagnosticResultLocation("Test0.vb", line, column)
                                                             }
                 }
         End Function
 
         Protected Overrides Function GetBasicDiagnosticAnalyzer() As DiagnosticAnalyzer
-            Return New LinqVariableNameAnalyzer()
+            Return New CommentsOnOwnLineAnalyzer()
         End Function
     End Class
 End Namespace

@@ -31,7 +31,6 @@ Public Class LinqVariableNameAnalyzer
         Dim root = context.Tree.GetCompilationUnitRoot()
         Dim tokens = root.DescendantTokens().ToList()
 
-
         For i = 0 To tokens.Count - 1
             ' Long form LINQ syntax
             If tokens(i).IsKind(SyntaxKind.WhereKeyword) AndAlso i + 2 <= tokens.Count Then
@@ -63,14 +62,5 @@ Public Class LinqVariableNameAnalyzer
                 End If
             End If
         Next
-
-        ''For Each token As SyntaxToken In tokens
-        ''    Dim commentText = comment.ToString().Substring(1).Trim()
-
-        ''    If commentText.StartsWith("*") AndAlso commentText.EndsWith("*") Then
-        ''        Dim diag = Diagnostic.Create(Rule, comment.GetLocation())
-        ''        context.ReportDiagnostic(diag)
-        ''    End If
-        ''Next
     End Sub
 End Class
