@@ -26,8 +26,8 @@ End Module"
         End Sub
 
         Private Function ExpectedDiagnostic(line As Integer, column As Integer) As DiagnosticResult
-            Return New DiagnosticResult With {.Id = PropertyDeclarationBracesAnalyzer.DiagnosticId,
-                .Message = PropertyDeclarationBracesAnalyzer.MessageFormat,
+            Return New DiagnosticResult With {.Id = DoNotUseLineSeparatorAnalyzer.DiagnosticId,
+                .Message = DoNotUseLineSeparatorAnalyzer.MessageFormat,
                 .Severity = DiagnosticSeverity.Warning,
                 .Locations = New DiagnosticResultLocation() {
                                                                 New DiagnosticResultLocation("Test0.vb", line, column)
