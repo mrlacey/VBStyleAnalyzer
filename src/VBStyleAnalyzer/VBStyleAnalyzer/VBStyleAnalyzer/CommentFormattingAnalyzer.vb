@@ -15,6 +15,7 @@ Public Class CommentFormattingAnalyzer
     Public Shared ReadOnly Description As String = "Start comment text with an uppercase letter and end comment text with a period."
 
     Private Shared Rule As New DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Categories.Commenting, defaultSeverity:=DiagnosticSeverity.Warning, isEnabledByDefault:=True, description:=Description)
+    Private uriRe As Object
 
     Public Overrides ReadOnly Property SupportedDiagnostics As ImmutableArray(Of DiagnosticDescriptor)
         Get
@@ -52,6 +53,18 @@ Public Class CommentFormattingAnalyzer
                 If Char.IsLetter(firstChar) Then
                     Dim firstCharIsUppercase = firstChar.ToString().ToUpper().Equals(firstChar.ToString())
                     Dim lastCharIsPeriod = commentText.Last().ToString().Equals(".")
+
+                    If Not lastCharIsPeriod Then
+                        ' Don't need to end with a period if ends with URI
+                        Dim lastWord = commentText.TrimEnd().Split(" ").Last()
+
+                        Dim uriResult As Uri = Nothing
+
+                        If Uri.TryCreate(lastWord, UriKind.Absolute, result:=uriResult) Then
+                            ' It's not, but for our logic we can pretend it is
+                            lastCharIsPeriod = True
+                        End If
+                    End If
 
                     If Not firstCharIsUppercase OrElse Not lastCharIsPeriod Then
                         addDiagnostic()

@@ -265,6 +265,19 @@ End Module"
 
             VerifyBasicDiagnostic(test, expected)
         End Sub
+        
+        <TestMethod>
+        Public Sub CommentEndingUriButNoPeriodTriggersNothing()
+
+            Dim test = "
+Module Module1
+    ' For more see http://example.com/docs/details
+    Sub Main()
+    End Sub
+End Module"
+
+            VerifyBasicDiagnostic(test)
+        End Sub
 
         Protected Overrides Function GetBasicDiagnosticAnalyzer() As DiagnosticAnalyzer
             Return New CommentFormattingAnalyzer()
