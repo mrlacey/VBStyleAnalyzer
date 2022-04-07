@@ -38,7 +38,7 @@ Public Class CommentsOnOwnLineAnalyzer
                 Dim commentPosition = comment.SyntaxTree.GetLineSpan(comment.Span).StartLinePosition
                 Dim lineOfInterest = fileLines(commentPosition.Line)
 
-                If Not String.IsNullOrWhiteSpace(lineOfInterest.Text.ToString().Substring(0, commentPosition.Character)) Then
+                If Not String.IsNullOrWhiteSpace(lineOfInterest.ToString().Substring(0, commentPosition.Character)) Then
                     Dim diag = Diagnostic.Create(Rule, comment.GetLocation())
                     context.ReportDiagnostic(diag)
                 End If
