@@ -99,8 +99,8 @@ Namespace TestHelper
 
                     Assert.IsTrue(False,
                         String.Format("Fix introduced new compiler diagnostics:{2}{0}{2}{2}New document:{2}{1}{2}",
-                            String.Join(vbNewLine, newCompilerDiagnostics.Select(Function(d) d.ToString())),
-                            document.GetSyntaxRootAsync().Result.ToFullString(), vbNewLine))
+                            String.Join(vbCrLf, newCompilerDiagnostics.Select(Function(d) d.ToString())),
+                            document.GetSyntaxRootAsync().Result.ToFullString(), vbCrLf))
                 End If
 
                 'check if there are analyzer diagnostics left after the code fix
