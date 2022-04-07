@@ -12,7 +12,7 @@ Namespace VBStyleAnalyzer.Test
         Inherits CodeFixVerifier
 
         <TestMethod>
-        Public Sub PropertiesVariablesAndClassesNamedIncorrectlyAreIdentified()
+        Public Sub CorrectlyIdentifyCommentsAfterText()
             Dim test = "
 ' Comments here are fine
 Dim whitespaceTrivia = allTrivia..ToList() ' This is wrong
@@ -23,6 +23,50 @@ Dim something =2
 
             Dim expected As DiagnosticResult() = {
                                                    ExpectedDiagnostic(3, 44)
+            }
+
+            VerifyBasicDiagnostic(test, expected)
+        End Sub
+
+        <TestMethod>
+        Public Sub CommentsAfterWhitespaceAreFine()
+            Dim test = "
+    ' Comments here are fine
+    Dim whitespaceTrivia = allTrivia..ToList()
+"
+
+            Dim expected As DiagnosticResult() = {
+            }
+
+            VerifyBasicDiagnostic(test, expected)
+        End Sub
+
+        <TestMethod>
+        Public Sub CommentsAfterWhitespaceAreFineEvenAfterNewline()
+            Dim test = "
+Namespace Something
+    ' Comments here are fine
+    Dim whitespaceTrivia = allTrivia..ToList()
+End Namespace
+"
+
+            Dim expected As DiagnosticResult() = {
+            }
+
+            VerifyBasicDiagnostic(test, expected)
+        End Sub
+
+        <TestMethod>
+        Public Sub CommentsAfterWhitespaceAreFineEvenAfterBlankLine()
+            Dim test = "
+Namespace Something
+
+    ' Comments here are fine
+    Dim whitespaceTrivia = allTrivia..ToList()
+End Namespace
+"
+
+            Dim expected As DiagnosticResult() = {
             }
 
             VerifyBasicDiagnostic(test, expected)
